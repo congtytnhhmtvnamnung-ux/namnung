@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nam Nung — Blog Kiến Thức Dâu Tằm</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --green-dark:#1a3a0a;
+  --green-mid:#2d5a1b;
+  --green-light:#5a8a3a;
+  --green-pale:#eaf3de;
+  --green-border:#c0dd97;
+  --cream:#fafaf7;
+  --text:#1a1a14;
+  --text-muted:#6b7a5e;
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--green-border);padding:0 5vw}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:var(--green-mid);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--green-dark)}
+.nav-logo-sub{font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:2px}
+.nav-links a{font-size:13px;padding:7px 14px;border-radius:6px;color:var(--text-muted);text-decoration:none;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{background:var(--green-pale);color:var(--green-dark)}
+.nav-cta{font-size:13px;padding:8px 18px;border-radius:6px;background:var(--green-mid);color:#fff!important;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--green-dark)!important}
+
+/* HERO */
+.hero{max-width:1100px;margin:0 auto;padding:72px 5vw 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green-light);font-weight:500;margin-bottom:16px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.15;color:var(--green-dark);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--green-mid)}
+.hero-desc{font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:28px;max-width:440px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{padding:12px 24px;background:var(--green-mid);color:#fff;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s}
+.btn-primary:hover{background:var(--green-dark)}
+.btn-secondary{padding:12px 24px;border:1px solid var(--green-border);color:var(--green-mid);border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:all .2s}
+.btn-secondary:hover{background:var(--green-pale)}
+.hero-visual{background:linear-gradient(135deg,var(--green-pale) 0%,#d4eaaa 50%,var(--green-border) 100%);border-radius:20px;height:380px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(45,90,27,.08),transparent 60%)}
+.hero-visual-icon{font-size:100px;opacity:.6}
+.hero-stats{display:flex;gap:28px;margin-top:32px;padding-top:24px;border-top:1px solid var(--green-border)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--green-dark)}
+.stat-label{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+/* SEARCH + FILTER */
+.filter-section{background:var(--white);border-top:1px solid var(--green-border);border-bottom:1px solid var(--green-border);padding:20px 5vw;position:sticky;top:64px;z-index:90}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--green-border);border-radius:8px;padding:9px 14px;flex:1;min-width:200px}
+.search-box input{border:none;background:transparent;font-size:13px;color:var(--text);outline:none;width:100%;font-family:'DM Sans',sans-serif}
+.search-box input::placeholder{color:var(--text-muted)}
+.cats{display:flex;gap:6px;flex-wrap:wrap}
+.cat-btn{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid var(--green-border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.cat-btn.active,.cat-btn:hover{background:var(--green-pale);color:var(--green-dark);border-color:var(--green-light)}
+
+/* POSTS */
+.posts-section{max-width:1100px;margin:0 auto;padding:48px 5vw}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--green-dark)}
+.section-count{font-size:13px;color:var(--text-muted)}
+
+/* FEATURED */
+.featured-card{background:var(--white);border:1px solid var(--green-border);border-radius:16px;padding:32px;margin-bottom:32px;display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:center;transition:border-color .2s}
+.featured-card:hover{border-color:var(--green-light)}
+.feat-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:4px 10px;border-radius:10px;background:var(--green-pale);color:var(--green-mid);border:1px solid var(--green-border);margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase}
+.feat-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;line-height:1.3;color:var(--green-dark);margin-bottom:10px}
+.feat-desc{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px}
+.feat-meta{display:flex;gap:14px;font-size:12px;color:var(--text-muted);flex-wrap:wrap}
+.feat-img{background:linear-gradient(135deg,var(--green-pale),var(--green-border));border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.read-more{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--green-mid);text-decoration:none;font-weight:500;margin-top:14px;transition:gap .2s}
+.read-more:hover{gap:10px}
+
+/* GRID */
+.posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.post-card{background:var(--white);border:1px solid var(--green-border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s}
+.post-card:hover{border-color:var(--green-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,90,27,.08)}
+.post-card-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.post-card-body{padding:16px}
+.post-cat{font-size:10px;font-weight:600;padding:3px 9px;border-radius:8px;display:inline-block;margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase}
+.cat-green{background:var(--green-pale);color:var(--green-mid);border:1px solid var(--green-border)}
+.cat-teal{background:#e1f5ee;color:#0f6e56;border:1px solid #9fe1cb}
+.cat-amber{background:#faeeda;color:#854f0b;border:1px solid #fac775}
+.cat-blue{background:#e6f1fb;color:#185fa5;border:1px solid #b5d4f4}
+.post-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;line-height:1.4;color:var(--green-dark);margin-bottom:6px}
+.post-desc{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.post-meta{font-size:11px;color:#aaa;display:flex;gap:8px}
+
+/* PAGINATION */
+.pagination{display:flex;justify-content:center;gap:6px;margin-top:40px}
+.page-btn{width:36px;height:36px;border:1px solid var(--green-border);border-radius:8px;background:transparent;font-size:13px;cursor:pointer;color:var(--text-muted);font-family:'DM Sans',sans-serif;transition:all .2s}
+.page-btn.active,.page-btn:hover{background:var(--green-pale);color:var(--green-dark);border-color:var(--green-light)}
+
+/* SIDEBAR STRIP */
+.bottom-section{background:var(--white);border-top:1px solid var(--green-border);padding:48px 5vw}
+.bottom-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+.bottom-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--green-dark);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--green-border)}
+.topic-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--green-pale);font-size:13px;color:var(--text-muted);cursor:pointer}
+.topic-row:hover{color:var(--green-dark)}
+.topic-row:last-child{border-bottom:none}
+.topic-count{font-size:11px;background:var(--green-pale);color:var(--green-light);padding:2px 8px;border-radius:8px}
+.comment-textarea{width:100%;border:1px solid var(--green-border);border-radius:8px;padding:10px 12px;font-size:13px;background:var(--cream);color:var(--text);resize:none;font-family:'DM Sans',sans-serif;margin-bottom:8px}
+.comment-textarea:focus{outline:none;border-color:var(--green-light)}
+.submit-btn{width:100%;padding:10px;background:var(--green-mid);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.submit-btn:hover{background:var(--green-dark)}
+.contact-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--green-pale);font-size:13px;color:var(--text-muted)}
+.contact-item:last-child{border-bottom:none}
+.contact-icon{font-size:16px;margin-top:1px}
+
+/* FOOTER */
+footer{background:var(--green-dark);color:rgba(255,255,255,.7);padding:32px 5vw;text-align:center}
+footer a{color:var(--green-border);text-decoration:none}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:700;margin-bottom:8px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .6s ease both}
+.featured-card{animation:fadeUp .5s ease .1s both}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:32px}
+  .hero-visual{height:200px}
+  .featured-card{grid-template-columns:1fr}
+  .feat-img{height:140px}
+  .bottom-inner{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-icon">🌿</div>
+      <div>
+        <div class="nav-logo-text">Nam Nung</div>
+        <div class="nav-logo-sub">Blog kiến thức</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active">Trang chủ</a>
+      <a href="#posts">Bài viết</a>
+      <a href="#about">Về chúng tôi</a>
+      <a href="#contact">Liên hệ</a>
+    </div>
+    <a href="mailto:info@namnung.vn" class="nav-cta">📩 Hợp tác</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Công Ty TNHH MTV Nam Nung</div>
+    <h1>Khám phá sức mạnh của <em>lá dâu tằm</em> Tây Nguyên</h1>
+    <p class="hero-desc">Kiến thức chuyên sâu về canh tác, chế biến và ứng dụng lá dâu tằm — từ nông trại Nam Nung, Đắk Nông đến thị trường toàn cầu.</p>
+    <div class="hero-actions">
+      <a href="#posts" class="btn-primary">Đọc bài viết</a>
+      <a href="#about" class="btn-secondary">Về Nam Nung</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">50+</div><div class="stat-label">Bài viết chuyên môn</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Dòng sản phẩm</div></div>
+      <div><div class="stat-num">B2B</div><div class="stat-label">Xuất khẩu quốc tế</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-icon">🌿</div>
+  </div>
+</section>
+
+<!-- SEARCH + FILTER -->
+<div class="filter-section" id="posts">
+  <div class="filter-inner">
+    <div class="search-box">
+      <span style="font-size:15px;color:var(--text-muted)">🔍</span>
+      <input type="text" id="nnSearch" placeholder="Tìm kiếm bài viết..." oninput="nnFilter()"/>
+    </div>
+    <div class="cats">
+      <button class="cat-btn active" onclick="nnCat('all',this)">Tất cả</button>
+      <button class="cat-btn" onclick="nnCat('Kiến thức',this)">🌱 Kiến thức</button>
+      <button class="cat-btn" onclick="nnCat('Sức khỏe',this)">💚 Sức khỏe</button>
+      <button class="cat-btn" onclick="nnCat('Thị trường',this)">📊 Thị trường</button>
+      <button class="cat-btn" onclick="nnCat('B2B',this)">🤝 B2B</button>
+    </div>
+  </div>
+</div>
+
+<!-- POSTS -->
+<section class="posts-section">
+  <div class="section-header">
+    <div class="section-title">Bài viết mới nhất</div>
+    <div class="section-count" id="nnCount">6 bài viết</div>
+  </div>
+
+  <div class="featured-card" id="nnFeatured">
+    <div>
+      <span class="feat-badge">⭐ Nổi bật</span>
+      <div class="feat-title">Lá dâu tằm — "vàng xanh" của nông nghiệp bền vững Việt Nam</div>
+      <div class="feat-desc">Tìm hiểu vì sao lá dâu tằm đang trở thành nguyên liệu chiến lược cho ngành dược phẩm, thực phẩm chức năng và dệt may sinh thái tại Việt Nam và toàn cầu.</div>
+      <div class="feat-meta">
+        <span>👤 Nhóm Nam Nung</span>
+        <span>📅 20/05/2025</span>
+        <span>⏱ 6 phút đọc</span>
+      </div>
+      <a href="#" class="read-more">Đọc bài viết →</a>
+    </div>
+    <div class="feat-img">🌿</div>
+  </div>
+
+  <div class="posts-grid" id="nnGrid"></div>
+  <div class="pagination" id="nnPages"></div>
+</section>
+
+<!-- BOTTOM -->
+<section class="bottom-section" id="about">
+  <div class="bottom-inner">
+    <div class="bottom-card">
+      <h3>📌 Chủ đề phổ biến</h3>
+      <div class="topic-row" onclick="nnCat('Sức khỏe',null)">Sức khỏe &amp; dâu tằm <span class="topic-count">12</span></div>
+      <div class="topic-row" onclick="nnCat('Kiến thức',null)">Kỹ thuật canh tác <span class="topic-count">8</span></div>
+      <div class="topic-row" onclick="nnCat('Thị trường',null)">Xu hướng thị trường <span class="topic-count">6</span></div>
+      <div class="topic-row" onclick="nnCat('B2B',null)">Hợp tác doanh nghiệp <span class="topic-count">5</span></div>
+    </div>
+    <div class="bottom-card" id="contact">
+      <h3>💬 Liên hệ &amp; hợp tác</h3>
+      <div class="contact-item"><span class="contact-icon">📍</span>Nam Nung, Đắk Song, Đắk Nông</div>
+      <div class="contact-item"><span class="contact-icon">📧</span>info@namnung.vn</div>
+      <div class="contact-item"><span class="contact-icon">📦</span>Cung cấp nguyên liệu B2B số lượng lớn</div>
+      <div class="contact-item"><span class="contact-icon">✅</span>Chứng nhận SGS, CO/CQ xuất khẩu</div>
+    </div>
+    <div class="bottom-card">
+      <h3>✉️ Để lại bình luận</h3>
+      <textarea class="comment-textarea" rows="4" id="nnComment" placeholder="Câu hỏi hoặc bình luận của bạn..."></textarea>
+      <button class="submit-btn" onclick="nnSubmit()">Gửi bình luận</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">🌿 Nam Nung</div>
+    <p style="font-size:13px;margin-bottom:8px">Công Ty TNHH MTV Nam Nung — Chuyên canh &amp; chế biến lá dâu tằm Tây Nguyên</p>
+    <p style="font-size:12px">© 2025 Nam Nung · <a href="mailto:info@namnung.vn">info@namnung.vn</a></p>
+  </div>
+</footer>
+
+<script>
+var nnPosts=[
+  {id:1,title:"Dâu tằm và khả năng kiểm soát đường huyết — bằng chứng khoa học",cat:"Sức khỏe",cls:"cat-teal",bg:"#e1f5ee",desc:"Các nghiên cứu chỉ ra DNJ trong lá dâu giúp ức chế α-glucosidase, hỗ trợ người tiểu đường type 2.",date:"15/05/2025",time:"5 phút",icon:"💚"},
+  {id:2,title:"Quy trình thu hoạch và sơ chế lá dâu chuẩn GMP",cat:"Kiến thức",cls:"cat-green",bg:"#eaf3de",desc:"Hướng dẫn đầy đủ thu hái, phân loại, sấy khô và kiểm tra chất lượng theo tiêu chuẩn xuất khẩu.",date:"10/05/2025",time:"8 phút",icon:"🌱"},
+  {id:3,title:"Thị trường chiết xuất dâu tằm toàn cầu 2025",cat:"Thị trường",cls:"cat-amber",bg:"#faeeda",desc:"Phân tích quy mô thị trường, nhà nhập khẩu chính và lợi thế cạnh tranh của dâu tằm Tây Nguyên.",date:"05/05/2025",time:"7 phút",icon:"📊"},
+  {id:4,title:"Hợp tác nguyên liệu B2B với Nam Nung",cat:"B2B",cls:"cat-blue",bg:"#e6f1fb",desc:"Thông tin MOQ, tiêu chuẩn chứng nhận, điều khoản hợp đồng cung ứng dài hạn cho đối tác.",date:"01/05/2025",time:"4 phút",icon:"🤝"},
+  {id:5,title:"Trà dâu tằm — từ cây trồng đến sản phẩm tiêu dùng",cat:"Sức khỏe",cls:"cat-teal",bg:"#e1f5ee",desc:"Hành trình tạo dòng trà dâu túi lọc organic đầu tiên từ vùng nguyên liệu Nam Nung, Đắk Nông.",date:"25/04/2025",time:"6 phút",icon:"🍃"},
+  {id:6,title:"Kỹ thuật trồng dâu tằm mật độ cao tại Tây Nguyên",cat:"Kiến thức",cls:"cat-green",bg:"#eaf3de",desc:"Bí quyết canh tác tăng năng suất 30% nhờ kỹ thuật cắt tỉa, bón phân và quản lý sâu bệnh sinh học.",date:"20/04/2025",time:"9 phút",icon:"🌿"}
+];
+var nnAC='all',nnPg=1,nnPer=3;
+function nnGF(){
+  var q=(document.getElementById('nnSearch').value||'').toLowerCase();
+  return nnPosts.filter(function(p){
+    return (nnAC==='all'||p.cat===nnAC)&&(!q||p.title.toLowerCase().indexOf(q)>-1||p.desc.toLowerCase().indexOf(q)>-1);
+  });
+}
+function nnRender(){
+  var f=nnGF(),total=Math.ceil(f.length/nnPer)||1,slice=f.slice((nnPg-1)*nnPer,nnPg*nnPer);
+  document.getElementById('nnCount').textContent=f.length+' bài viết';
+  document.getElementById('nnGrid').innerHTML=slice.map(function(p){
+    return '<div class="post-card">'
+      +'<div class="post-card-img" style="background:'+p.bg+'">'+p.icon+'</div>'
+      +'<div class="post-card-body">'
+      +'<span class="post-cat '+p.cls+'">'+p.cat+'</span>'
+      +'<div class="post-title">'+p.title+'</div>'
+      +'<div class="post-desc">'+p.desc+'</div>'
+      +'<div class="post-meta"><span>📅 '+p.date+'</span><span>⏱ '+p.time+'</span></div>'
+      +'</div></div>';
+  }).join('');
+  var pg=document.getElementById('nnPages');pg.innerHTML='';
+  for(var i=1;i<=total;i++){(function(i){
+    var b=document.createElement('button');
+    b.className='page-btn'+(i===nnPg?' active':'');
+    b.textContent=i;
+    b.onclick=function(){nnPg=i;nnRender();window.scrollTo({top:document.getElementById('posts').offsetTop-130,behavior:'smooth'});};
+    pg.appendChild(b);
+  })(i);}
+}
+function nnCat(c,el){
+  nnAC=c;nnPg=1;
+  document.querySelectorAll('.cat-btn').forEach(function(x){x.classList.remove('active');});
+  if(el)el.classList.add('active');
+  nnRender();
+}
+function nnFilter(){nnPg=1;nnRender();}
+function nnSubmit(){
+  var v=(document.getElementById('nnComment').value||'').trim();
+  if(v){alert('Cảm ơn bình luận của bạn!\n\n"'+v+'"');document.getElementById('nnComment').value='';}
+}
+nnRender();
+</script>
+</body>
+</html>
